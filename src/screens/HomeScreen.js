@@ -72,7 +72,7 @@ const HeaderButtonComponent = (props) => (
   
 Home.navigationOptions = (navData) => {
   return {
-    headerTitle: "Home",
+    headerTitle: "Notifications",
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButtonComponent}>
         <Item
