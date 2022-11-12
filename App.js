@@ -4,13 +4,11 @@ import { createAppContainer } from "react-navigation";
 import Home from "./src/screens/HomeScreen";
 import { createStackNavigator } from "react-navigation-stack";
 import Setting from "./src/screens/SettingScreen";
-import Notificationss from "./src/screens/NotificationScreen";
   
 const AppNavigator = createStackNavigator(
   {
     Home: Home,
     Setting: Setting,
-    Notification:Notificationss,
 
   },
   {

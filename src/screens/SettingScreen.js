@@ -1,10 +1,14 @@
 import React from "react";
 import { Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { RadioButton } from 'react-native-paper';
+import { RadioButton,ToggleButton } from 'react-native-paper';
+import { Switch } from 'react-native-paper';
 
 const Settings = () => {
   const [checked, setChecked] = React.useState('first');
+  const [isSwitchOn, setIsSwitchOn] = React.useState(false);
+
+const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
   return (
     <View style={{  justifyContent: "center" }}>
   <Text>Recommended 
@@ -13,25 +17,16 @@ const Settings = () => {
   </Text>
   <Text>Social Notifications 
 
-  <RadioButton
-        value="second"
-        status={ checked === 'second' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('second')}
-      />
+  <Switch value={isSwitchOn} onValueChange={onToggleSwitch}  style={{alignItems:"left", justifyContent:"left"}}/>
   </Text>
   <Text>Brew Notifications
-  <RadioButton
-        value="second"
-        status={ checked === 'second' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('second')}
-      />
+  
+
+ <Switch value={isSwitchOn} onValueChange={onToggleSwitch} />
+      <ToggleButton />
   </Text>
   <Text>Sales,Discounts and more 
-  <RadioButton
-        value="second"
-        status={ checked === 'second' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('second')}
-      />
+  <Switch value={isSwitchOn} onValueChange={onToggleSwitch} />
   </Text>
     </View>
   );
