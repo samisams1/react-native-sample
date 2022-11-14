@@ -3,37 +3,27 @@ import { StatusBar,
   StyleSheet,
   Text,
   View,
-  FlatList, } from "react-native";
+  FlatList,
+  TouchableOpacity,
+  Button, } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import {
   Item,
   HeaderButton,
   HeaderButtons,
 } from "react-navigation-header-buttons";
-
-
-
+import FeedbackQuery from "./api";
   
 const Social = (props) => {
-    const DATA = [ 'first row','second row','third row','fourth row','fifth row','sixth row','seventh row','Eight row','Nine row'
-,'Tenth row'];
-
- const [data,setData] = useState([]);
- useEffect(() => {
-  fetch('http://localhost:9090/feedbacks')
-    .then((response) => response.json())
-    .then((json) => setData(json))
-    .catch((error) => console.error(error));
-}, []);
-
+const {data } = FeedbackQuery(); 
   return (
     <View style={styles.container_style}>
       <FlatList 
-        data={DATA}
+        data={data}
         renderItem={({item}) =>
         <View style={styles.item_style}>
            <View style={styles.row}> 
-           <Text style={styles.title}>{item}</Text>    
+           <Text style={styles.title}>{item.title}</Text>    
            <Text style={styles.post_time} >30m</Text>
            </View>
            <Text >{item.content}</Text>
@@ -53,16 +43,10 @@ const HeaderButtonComponent = (props) => (
   />
 );
   
-Home.navigationOptions = (navData) => {
+Social.navigationOptions = (navData) => {
   return {
     headerTitle: "Notifications",
-    HeaderButtons: () =>{
-      <Item
-      title="Setting"
-      iconName="ios-settings-outline"
-      onPress={() => navData.navigation.navigate("Setting")}
-    />
-    },
+   
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButtonComponent}>
         <Item
@@ -71,12 +55,27 @@ Home.navigationOptions = (navData) => {
           onPress={() => navData.navigation.navigate("Setting")}
         />
       </HeaderButtons>
+
+      
     ),
-    headerRight: (
-        <Button
-        title = "Test"
-        onPress = {() => this.params.handleSave()}/>
-      ),
+    headerRight: () => (
+      <View style={styles.row}>
+      <View style={styles.roundButton1}>  
+ <TouchableOpacity
+        style={styles.roundButton1}
+        onPress={() => navData.navigation.navigate('home')}>
+        <Text    style={styles.textColor}>Brewsy</Text>
+      </TouchableOpacity>
+
+      </View>
+      <View>
+      <TouchableOpacity
+        onPress={() => navData.navigation.navigate('Social')}>
+        <Text    style={styles.textColor}>Social</Text>
+      </TouchableOpacity>
+      </View>
+        </View>
+    ),
     
   };
 };
@@ -120,4 +119,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 2,
   },
+  roundButton1: {
+    width: 100,
+    height: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+    borderRadius: 100,
+    backgroundColor: '#F65A0C',
+  },
+  textColor :{
+    color:'#FFFFFF',
+    fontWeight:900,
+    fontSize:15  
+  }
 });
