@@ -3,8 +3,7 @@ import { StatusBar,
   StyleSheet,
   Text,
   View,
-  FlatList,
-  Button, } from "react-native";
+  FlatList, } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import {
   Item,
@@ -15,7 +14,10 @@ import {
 
 
   
-const Home = (props) => {
+const Social = (props) => {
+    const DATA = [ 'first row','second row','third row','fourth row','fifth row','sixth row','seventh row','Eight row','Nine row'
+,'Tenth row'];
+
  const [data,setData] = useState([]);
  useEffect(() => {
   fetch('http://localhost:9090/feedbacks')
@@ -24,26 +26,14 @@ const Home = (props) => {
     .catch((error) => console.error(error));
 }, []);
 
-
-
   return (
     <View style={styles.container_style}>
-       <Button
-             onPress={() => props.navigation.navigate('Setting')}
-              title="Wisdey"
-              color="red"
-            />
-              <Button
-             onPress={() => props.navigation.navigate('Setting')}
-              title="Wisdey"
-              style={{ flex: 1, alignItems: 'center', justifyContent: 'center',innerWidth:50 }}
-            />
       <FlatList 
-        data={data}
+        data={DATA}
         renderItem={({item}) =>
         <View style={styles.item_style}>
            <View style={styles.row}> 
-           <Text style={styles.title}>{item.title}</Text>    
+           <Text style={styles.title}>{item}</Text>    
            <Text style={styles.post_time} >30m</Text>
            </View>
            <Text >{item.content}</Text>
@@ -66,7 +56,13 @@ const HeaderButtonComponent = (props) => (
 Home.navigationOptions = (navData) => {
   return {
     headerTitle: "Notifications",
-   
+    HeaderButtons: () =>{
+      <Item
+      title="Setting"
+      iconName="ios-settings-outline"
+      onPress={() => navData.navigation.navigate("Setting")}
+    />
+    },
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButtonComponent}>
         <Item
@@ -75,13 +71,16 @@ Home.navigationOptions = (navData) => {
           onPress={() => navData.navigation.navigate("Setting")}
         />
       </HeaderButtons>
-
-      
     ),
+    headerRight: (
+        <Button
+        title = "Test"
+        onPress = {() => this.params.handleSave()}/>
+      ),
     
   };
 };
-export default Home;
+export default Social;
 //Styles 
 const styles = StyleSheet.create({
   container_style: {
