@@ -20,12 +20,14 @@ const AppNavigator = createStackNavigator(
         height:100,
         borderRadius:10,
         alignItems:"center",
+        headerShown: false,
       },
       headerTitleStyle: {
         fontWeight: "bold",
         color: "#FFF",
         alignSelf: 'center',
         justifyContent: 'center'
+        
 
       },
       headerTintColor: "#FFF",

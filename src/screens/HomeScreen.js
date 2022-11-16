@@ -20,10 +20,6 @@ const {data } = FeedbackQuery();
   return (
     <View style={styles.container_style}>
      
-              
-     
-
-
       <FlatList 
         data={data}
         renderItem={({item}) =>
@@ -51,8 +47,44 @@ const HeaderButtonComponent = (props) => (
   
 Home.navigationOptions = (navData) => {
   return {
-    headerTitle: "Notifications",
    
+    headerTitle: () => (
+<View>
+<View style={styles.NavTtitle}>
+  <Text style={styles.NavTtitle}>Notifications</Text>
+</View>
+<View style={styles.bottomNav}>
+<View style={styles.row}>
+   
+   <View style={styles.row}>
+<br/>
+  
+   <View style={styles.brewsy}>  
+<TouchableOpacity
+     style={styles.roundButton1}
+     onPress={() => navData.navigation.navigate('home')}>
+     <Text    style={styles.textColor}>Brewsy</Text>
+   </TouchableOpacity>
+
+   </View>
+   <Text>
+
+ 
+ <TouchableOpacity
+     onPress={() => navData.navigation.navigate('Social')}>
+     <Text    style={styles.textColor}>Social</Text>
+   </TouchableOpacity>
+
+
+   </Text>
+   </View>
+   <View style={styles.screen}>
+
+ </View>
+</View>
+</View>
+</View>
+    ),
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButtonComponent}>
         <Item
@@ -61,37 +93,6 @@ Home.navigationOptions = (navData) => {
           onPress={() => navData.navigation.navigate("Setting")}
         />
       </HeaderButtons> 
-    ),
-      headerLeft: () => (
-      <View style={styles.row}>
-   
-      <View style={styles.row}>
-<br/>
-     
-      <View style={styles.roundButton1}>  
- <TouchableOpacity
-        style={styles.roundButton1}
-        onPress={() => navData.navigation.navigate('home')}>
-        <Text    style={styles.textColor}>Brewsy</Text>
-      </TouchableOpacity>
-
-      </View>
-      <Text>
-
-    
-    <TouchableOpacity
-        onPress={() => navData.navigation.navigate('Social')}>
-        <Text    style={styles.textColor}>Social</Text>
-      </TouchableOpacity>
-
-
-      </Text>
-      </View>
-      <View style={styles.screen}>
-
-    </View>
-</View>
-      
     ),
     
   };
@@ -151,7 +152,7 @@ const styles = StyleSheet.create({
       width:100,
     },
     roundButton1: {
-      width: 100,
+      width: 120,
       height: 25,
       justifyContent: 'center',
       alignItems: 'center',
@@ -170,5 +171,29 @@ const styles = StyleSheet.create({
       color:'#FFFFFF',
       fontWeight:900,
       fontSize:15  
-    }
+    },
+    row1:{
+      backgroundColor:'black',
+      color:'white',
+      justifyContent: 'center',
+    alignItems: 'center',
+    },
+    row2:{
+      backgroundColor:'blue' 
+   },
+   NavTtitle:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    color:'#FFF',
+    fontWeight:900,
+   },
+   bottomNav :{
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop:25
+   },
+   brewsy:{
+    paddingRight:50
+   }
+
 });
